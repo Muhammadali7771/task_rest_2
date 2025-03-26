@@ -19,7 +19,7 @@ public class Trainee {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
     private String address;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private User user;
     @ManyToMany
     @JoinTable(name = "trainee_trainer",
