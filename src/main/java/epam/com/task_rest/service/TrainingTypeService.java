@@ -20,7 +20,7 @@ public class TrainingTypeService {
         this.trainingTypeMapper = trainingTypeMapper;
     }
 
-    public TrainingType getTrainingType(Integer id) {
+    public TrainingType getTrainingTypeById(Integer id) {
         return trainingTypeRepository.findTrainingTypeById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Training type not found"));
     }

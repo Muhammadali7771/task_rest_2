@@ -34,7 +34,7 @@ public class TrainerMapper {
 
         Trainer trainer = new Trainer();
         Integer trainingTypeId = dto.specializationId();
-        TrainingType trainingType = trainingTypeService.getTrainingType(trainingTypeId);
+        TrainingType trainingType = trainingTypeService.getTrainingTypeById(trainingTypeId);
         trainer.setSpecialization(trainingType);
         trainer.setUser(user);
 
@@ -52,7 +52,7 @@ public class TrainerMapper {
         user.setActive(dto.isActive());
 
         Integer trainingTypeId = dto.specializationId();
-        TrainingType trainingType = trainingTypeService.getTrainingType(trainingTypeId);
+        TrainingType trainingType = trainingTypeService.getTrainingTypeById(trainingTypeId);
         trainer.setSpecialization(trainingType);
 
         return trainer;
