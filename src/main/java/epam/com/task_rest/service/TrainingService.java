@@ -29,7 +29,7 @@ public class TrainingService {
         Trainee trainee = traineeRepository.findTraineeByUser_UserName(dto.traineeUsername())
                 .orElseThrow(() -> new ResourceNotFoundException("Trainee not found"));
         TrainingType trainingType = trainingTypeRepository.findTrainingTypeById(dto.trainingTypeId())
-                .orElseThrow(() -> new ResourceNotFoundException("Training Type not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Training type not found"));
         Training training = trainingMapper.toEntity(dto, trainer, trainee, trainingType);
         trainingRepository.save(training);
     }
