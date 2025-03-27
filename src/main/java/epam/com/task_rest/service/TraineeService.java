@@ -103,12 +103,13 @@ public class TraineeService {
         if (!traineeRepository.existsByUser_UserName(traineeUsername)) {
             throw new ResourceNotFoundException("Trainee not found");
         }
-        List<Training> trainings = trainingRepository.getTraineeTrainingsListByTraineeUsernameAndCriteria(traineeUsername, fromDate, toDate, trainerName, trainingTypeId);
+        List<Training> trainings = trainingRepository.getTraineeTrainingsListByTraineeUsernameAndCriteria(traineeUsername, fromDate, toDate,
+                                                                                                          trainerName, trainingTypeId);
         return trainingMapper.toDtoList(trainings);
     }
 
 
-    public List<TrainerShortDto> getTrainersListNotAssignedOnTrainee(String traineeUsername){
+    public List<TrainerShortDto> getTrainersListNotAssignedOnTrainee(String traineeUsername) {
         Integer traineeId = traineeRepository.findTraineeIdByUsername(traineeUsername)
                 .orElseThrow(() -> new ResourceNotFoundException("Trainee not found"));
         List<Integer> notAssignedTrainerIds = trainerRepository.findTrainersIdNotAssignedOnTraineeByTraineeId(traineeId);
@@ -116,7 +117,7 @@ public class TraineeService {
         return trainerMapper.toShortDtoList(notAssignedTrainers);
     }
 
-    public List<TrainerShortDto> updateTraineeTrainerList(UpdateTraineeTrainersListDto dto){
+    public List<TrainerShortDto> updateTraineeTrainerList(UpdateTraineeTrainersListDto dto) {
         Trainee trainee = traineeRepository.findTraineeByUser_UserName(dto.traineeUsername())
                 .orElseThrow(() -> new ResourceNotFoundException("Trainee not found"));
         List<Trainer> trainers = trainerRepository.findTrainersByUser_UserNameIn(dto.trainers());

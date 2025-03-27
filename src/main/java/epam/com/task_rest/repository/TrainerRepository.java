@@ -37,8 +37,10 @@ public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
 
     @Query(value = "select t.id from trainers t left join trainee_trainer tt on t.id = tt.trainer_id where tt.trainee_id is distinct from :traineeId", nativeQuery = true)
     List<Integer> findTrainersIdNotAssignedOnTraineeByTraineeId(Integer traineeId);
+
     @Query("select t from Trainer t where t.id in (:ids)")
     List<Trainer> findTrainersById(List<Integer> ids);
+
     @Query("select t from Trainer t where t.user.userName in (:trainers)")
     List<Trainer> findTrainersByUser_UserNameIn(List<String> trainers);
 }
