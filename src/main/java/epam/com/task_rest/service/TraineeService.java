@@ -59,10 +59,6 @@ public class TraineeService {
         }
     }
 
-    public boolean checkIfUsernameAndPasswordMatching(String username, String password) {
-        boolean isMatch = traineeRepository.checkUsernameAndPasswordMatch(username, password);
-        return isMatch;
-    }
 
     public TraineeDto getTraineeByUsername(String username) {
         Trainee trainee = traineeRepository.findTraineeByUser_UserName(username)
@@ -71,7 +67,7 @@ public class TraineeService {
     }
 
     public void changePassword(ChangeLoginDto dto) {
-        if (!checkIfUsernameAndPasswordMatching(dto.username(), dto.oldPassword())) {
+        if (!traineeRepository.checkUsernameAndPasswordMatch(dto.username(), dto.oldPassword())) {
             throw new AuthenticationException("username or password is incorrect");
         }
         traineeRepository.changePassword(dto.username(), dto.newPassword());
